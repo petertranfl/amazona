@@ -15,11 +15,8 @@ mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/amazona', {
     useUnifiedTopology: true,
     useCreateIndex: true
 })
-
-app.get('/', (req, res) => {
-    res.send('Server is ready');
-});
-
+app.use(express.static(path.join(__dirname, '/frontend/build')))
+app.get('*', (req, res) => res.sendFile(path.join(__dirname, '/frontend/build/index.html')))
 app.use('/api/config/paypal', (req, res) => {
     res.send(process.env.PAYPAL_CLIENT_ID || 'sb')
 })
