@@ -8,6 +8,7 @@ import orderRouter from './routers/orderRouter.js';
 dotenv.config()
 
 const app = express();
+const __dirname = path.resolve();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/amazona', {
